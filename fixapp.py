@@ -179,15 +179,15 @@ def main():
                 </div>
                 <div style='flex: 1; margin: 10px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: center; background-color: #f9f9f9;'>
                     <h3 style='color: black; text-align: center;'>Computer Vision</h3>
-                    <p style='color: black;'>Detecting plant types and classifying plant age through image analysis.</p>
+                    <p style='color: black;'>Detecting plant types and classifying plant age through image analysis. This advanced detection helps in monitoring the growth stages and health of your plants, ensuring optimal care and timely intervention.</p>
                 </div>
                 <div style='flex: 1; margin: 10px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: center; background-color: #f9f9f9;'>
-                    <h3 style='color: black; text-align: center;'>Automated Watering</h3>
-                    <p style='color: black;'>Allow users to manage and adjust their hydroponic environment conditions in real-time through an intuitive web interface.</p>
+                    <h3 style='color: black; text-align: center;'>Controlling</h3>
+                    <p style='color: black;'>Allow users to manage and adjust their hydroponic environment conditions in real-time. Users can control fans and heating lamps based on temperature sensor readings to maintain ideal climate conditions, and also manage water flow as needed.</p>
                 </div>
                 <div style='flex: 1; margin: 10px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: center; background-color: #f9f9f9;'>
                     <h3 style='color: black; text-align: center;'>Website Interface</h3>
-                    <p style='color: black;'>Providing users with the ability to monitor and control plant conditions from anywhere and at any time.</p>
+                    <p style='color: black;'>Providing users with the ability to monitor and control plant conditions from anywhere and at any time. The user-friendly interface ensures that even those new to hydroponics can easily manage their system with confidence.</p>
                 </div>
             </div>
             """,
