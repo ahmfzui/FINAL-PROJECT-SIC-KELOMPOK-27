@@ -1,1 +1,2 @@
 # FINAL PROJECT SAMSUNG INNOVATION CAMPUS - BATCH 5 - GROUP 27
+- fixapp.py (Streamlit Code)
