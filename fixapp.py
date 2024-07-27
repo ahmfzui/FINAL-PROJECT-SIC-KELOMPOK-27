@@ -20,7 +20,7 @@ collection = db['temperature_settings']
 inputJam = db['clock_settings']
 
 # URL ESP32 CAM
-url = 'http://192.168.1.9/cam-hi.jpg'
+url = 'http://192.168.1.8/cam-hi.jpg'
 image_placeholder = st.empty()
 
 # Kelas objek untuk model YOLO
@@ -231,7 +231,7 @@ def main():
                     
                 with col3:
                     st.subheader("🌬️ Air Quality")
-                    widget_url3 = "https://stem.ubidots.com/app/dashboards/public/widget/xggZMNEOQq-32hJmgV9ovScYSPNe9iyO77bi1lB5oE4"
+                    widget_url3 = "https://stem.ubidots.com/app/dashboards/public/widget/r2vxbd2k48WLkhuDvjDSzZSkCzM2tTlyOOIXEjmlv70"
                     st.components.v1.iframe(widget_url3, width=300, height=300, scrolling=True)
 
                     st.subheader("📈 Air Quality Graph")
@@ -264,7 +264,7 @@ def main():
         st.markdown("<hr/>", unsafe_allow_html=True)
 
         # Create tabs for controlling temperature and water motor
-        tab1, tab2 = st.tabs(["**🌡️ Temperature Control**", "**💦 Water Motor Control**"])
+        tab1, tab2 = st.tabs(["🌡 Temperature Control*", "💦 Water Motor Control*"])
 
         # Center buttons
         st.markdown("""
@@ -276,7 +276,7 @@ def main():
         # Temperature Control tab
         with tab1:
             st.write("")
-            st.markdown("<h3 style='text-align: center;'>🌡️ Set Minimum and Maximum Temperature</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='text-align: center;'>🌡 Set Minimum and Maximum Temperature</h3>", unsafe_allow_html=True)
             st.write("")
 
             with st.form(key='temperature_form'):
@@ -320,21 +320,21 @@ def main():
 
             with st.form(key='motor_form'):
                 # Text input for pump schedule time
-                pump_schedule_str = st.text_input('Water Pump Schedule (HH : MM)', value=datetime.now().strftime('%H:%M'))
+                alarm_time_str = st.text_input('Water Pump Schedule (HH : MM)', value=datetime.now().strftime('%H:%M'))
 
                 # Submit button
                 submit_button = st.form_submit_button(label='Save Pump Schedule')
 
                 if submit_button:
                     # Validate the time format
-                    pump_schedule = validate_time(pump_schedule_str)
+                    alarm_time = validate_time(alarm_time_str)
 
-                    if pump_schedule:
+                    if alarm_time:
                         # Convert the time to a string in HH:MM format
-                        pump_schedule_str = pump_schedule.strftime('%H:%M')
+                        pump_schedule_str = alarm_time.strftime('%H:%M')
 
                         # Insert into the database
-                        inputJam.insert_one({'pump_schedule': pump_schedule_str})
+                        inputJam.insert_one({'alarm_time': alarm_time_str})
                         st.success('Water pump schedule has been saved!')
                     else:
                         st.error('Invalid time format. Please use HH:MM.')
@@ -345,14 +345,16 @@ def main():
                     f"""
                     <div style='display: flex; justify-content: center; margin: 20px 0;'>
                         <div style='padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #00502D; color: white; max-width: 600px; text-align: center;'>
-                            <p><b>Latest Pump Schedule:</b> {setting.get('pump_schedule')}</p>
+                            <p><b>Latest Pump Schedule:</b> {setting.get('alarm_time')}</p>
                         </div>
                     </div>
                     """,
                     unsafe_allow_html=True
                 )
+            
 
     elif menu_selection == "Object Detection":
+        image_placeholder = st.empty()
         st.markdown("<h1 style='text-align: center;'>Object Detection for Sawi Varieties</h1>", unsafe_allow_html=True)
         st.markdown("<p style='text-align: center;'>Leverage advanced object detection to identify and classify different Sawi varieties. You can either upload images or videos for analysis or stream live video from an ESP32 CAM for real-time detection. Choose the method that best suits your needs for monitoring and analyzing your hydroponic system. </p>", unsafe_allow_html=True)
         st.markdown("<hr/>", unsafe_allow_html=True) 
@@ -360,7 +362,7 @@ def main():
         model = YOLO('trained_pakcoy.pt')
 
         # Create tabs
-        tab1, tab2 = st.tabs(["**📷 Upload Image and Video**", "**📡 Real-time Object Detection**"])
+        tab1, tab2 = st.tabs(["📷 Upload Image and Video*", "📡 Real-time Object Detection*"])
 
         with tab1:
             st.write("")
@@ -399,6 +401,9 @@ def main():
             
             # Manage webcam stream control
             if submit_button_start:
+                placeholder = st.empty()
+                last_detection = st.empty()
+                last_detected_label = ""  # Initialize the variable with a default value
                 # Jalankan deteksi objek secara real-time
                 while True:
                     img_resp = urllib.request.urlopen(url)
@@ -410,9 +415,23 @@ def main():
                         print("Frame shape: ", frame.shape)
                         
                         result_frame, detected_objects = process_frame(frame, model, min_confidence)
+                        frame_rgb = cv2.cvtColor(result_frame, cv2.COLOR_BGR2RGB)
+                        
                         try:
-                            frame_rgb = cv2.cvtColor(result_frame, cv2.COLOR_BGR2RGB)
-                            image_placeholder.image(frame_rgb, channels="RGB", use_column_width=True)
+                            # Create two columns
+                            col1, col2 = st.columns([2, 1])  # Adjust the width ratio as needed
+                            
+                            with col1:
+                                # Display the image in the first column
+                                placeholder.image(frame_rgb, channels="RGB", use_column_width=False, width=700)
+                                
+                            with col2:
+                                # Display the detected object label in the second column
+                                if detected_objects:
+                                    last_detected_label = detected_objects[-1]  # Update with the latest detection
+                                    last_detection.text(f"Last detected object: {last_detected_label}")  # Display the last detected label
+                                else:
+                                    last_detection.text("No objects detected.")
                         except cv2.error as e:
                             print("OpenCV error: ", e)
                     else:
