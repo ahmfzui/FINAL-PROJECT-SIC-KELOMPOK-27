@@ -15,5 +15,5 @@ ultralytics
 Werkzeug
 Requests
 setuptools
-h5py
+tensorflow h5py
 keras
