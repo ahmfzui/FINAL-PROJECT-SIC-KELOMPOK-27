@@ -132,7 +132,7 @@ def detect_maturity_in_video(model, uploaded_file, min_confidence):
     st.write("Video processing completed.")
 
 # Load your trained model
-modelpest = tf.keras.models.load_model('DetectionPest.h5')
+modelpest = tf.keras.models.load_model('DetectionPestPlant.h5')
 
 # Define the classes based on your training
 classes = ["pest detected", "no pest detected"]# Replace with your actual class names
