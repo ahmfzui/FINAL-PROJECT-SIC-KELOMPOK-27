@@ -293,10 +293,11 @@ def main():
 
         with st.form("Blog_Form"):
 
+            # Menambahkan CSS untuk styling
             st.markdown("""
             <style>
             .stButton { display: flex; justify-content: center; }
-            h3.custom-title { font-size: 24px; } /* Mengubah ukuran font title */
+            .custom-title { font-size: 28px; font-weight: bold; } /* Mengubah ukuran font title */
             </style>
             """, unsafe_allow_html=True)
 
