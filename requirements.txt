@@ -4,9 +4,8 @@ opencv_python
 opencv_python_headless
 pandas
 Pillow
-Pillow
 pymongo
-Requests=
+Requests
 seaborn
 streamlit
 streamlit_option_menu
