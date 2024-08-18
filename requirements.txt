@@ -14,3 +14,4 @@ tensorflow
 tensorflow_intel
 ultralytics
 Werkzeug
+Requests
