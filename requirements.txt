@@ -15,3 +15,5 @@ ultralytics
 Werkzeug
 Requests
 setuptools
+h5py
+keras
