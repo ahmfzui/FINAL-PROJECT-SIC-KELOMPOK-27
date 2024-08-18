@@ -26,7 +26,7 @@ VARIABLE_ID_1 = '66a99dbade9a2d0ca44681c9'
 VARIABLE_ID_2 = '66a21a1de770251891fa8abc'
 
 # URL ESP32 CAM
-url = 'http://192.168.1.8/cam-hi.jpg'
+url = 'http://192.168.18.207/cam-hi.jpg'
 image_placeholder = st.empty()
 
 # Kelas objek untuk model YOLO
