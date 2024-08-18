@@ -191,7 +191,7 @@ def main():
         col1, col2, col3 = st.columns([0.2, 0.7, 0.2])
 
         # Muat gambar
-        image = Image.open('title.png')
+        image = Image.open('Image/title.png')
         # Tampilkan gambar
         col2.image(image, use_column_width=True)
         st.markdown("<hr/>", unsafe_allow_html=True)
@@ -210,7 +210,7 @@ def main():
 
         col1, col2, col3 = st.columns([0.2, 0.4, 0.2])
         # Muat gambar
-        image_hidro = Image.open('Hydroponic.jpg')
+        image_hidro = Image.open('Image/Hydroponic.jpg')
         # Tampilkan gambar
         col2.image(image_hidro, use_column_width=True)
 
@@ -308,38 +308,38 @@ def main():
             blog_data = [
                 {
                     "title": "5 Tips for Caring for Hydroponic Plants",
-                    "img_path": "tips.jpg",
+                    "img_path": "Image/tips.jpg",
                     "description": "A Practical Guide to Maintaining Health and Optimal Growth for Your Hydroponic Plants, including how to manage nutrients, water, light, and system cleanliness.",
                     "link": "https://pustaka.setjen.pertanian.go.id/index-berita/5-tips-merawat-tanaman-hidroponik"
                 },
                 {
                     "title": "Hydroponic Nutrient Requirements",
-                    "img_path": "Nutrisi.jpg",
+                    "img_path": "Image/Nutrisi.jpg",
                     "description": "Discover the Secrets Behind Healthy Hydroponic Plant Growth! This article reviews the essential requirements for hydroponic nutrients.",
                     "link": "https://gokomodo.com/blog/inilah-syarat-nutrisi-hidroponik-dan-jenisnya"
                 },
                 {
                     "title": "7 Common Mistakes Beginners",
-                    "img_path": "blogkesalahan.jpg",
+                    "img_path": "Image/blogkesalahan.jpg",
                     "description": "Discussing Common Mistakes Made by Beginners in Hydroponic Gardening",
                     "link": "https://hidroponikpedia.com/kesalahan-pemula-hidroponik/"
                 },
                 # Postingan tambahan
                 {
                     "title": "4 Hydroponic Technologies in Japan",
-                    "img_path": "jepangHidroponik.jpg",
+                    "img_path": "Image/jepangHidroponik.jpg",
                     "description": "Discover the Latest Innovations in Hydroponics Transforming Farming in Japan! This article explores four advanced technologies being implemented in Japan.",
                     "link": "https://dlh.semarangkota.go.id/4-teknologi-hidroponik-di-jepang/"
                 },
                 {
                     "title": "Maximizing Hydroponic Lighting",
-                    "img_path": "tambahan.jpg",
+                    "img_path": "Image/tambahan.jpg",
                     "description": "Uncover the Secrets Behind Healthy Hydroponic Plant Growth! This article explores the essential requirements for hydroponic nutrition.",
                     "link": "https://www.kompasiana.com/madeyogi1918/60a34c648ede485a65284762/pencahayaan-tanaman-hidroponik-dalam-ruangan-guna-memaksimalkan-produktivitas-tanaman"
                 },
                 {
                     "title": "4 Tips for Maximizing Hydroponics",
-                    "img_path": "4tips.jpg",
+                    "img_path": "Image/4tips.jpg",
                     "description": "Want a More Bountiful Hydroponic Harvest? Discover 4 Practical Tips to Optimize Hydroponic Plant Growth",
                     "link": "https://kebunpintar.id/blog/ketahui-4-tips-dalam-memaksimalkan-bercocok-tanam-metode-hidroponik/"
                 }
