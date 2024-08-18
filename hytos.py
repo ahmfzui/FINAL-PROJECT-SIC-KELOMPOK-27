@@ -296,6 +296,7 @@ def main():
             st.markdown("""
             <style>
             .stButton { display: flex; justify-content: center; }
+            h3.custom-title { font-size: 24px; } /* Mengubah ukuran font title */
             </style>
             """, unsafe_allow_html=True)
 
