@@ -9,11 +9,11 @@
 #include <DallasTemperature.h>
 
 
-// Konstan untuk UBIDOTS  
+// Inisialisasi untuk UBIDOTS  
 const char *UBIDOTS_TOKEN = "BBUS-xhl2VElj9gMEWA0aXyA9qnqkSd39Tp";
 const char *DEVICE_LABEL = "sic";
 
-// Konstan untuk WiFi credentials
+// Inisialisasi WiFi
 const char *WIFI_SSID = "Cari Gratisan yaa";
 const char *WIFI_PASS = "yaudahsambunginaja";
 
@@ -22,7 +22,7 @@ const float PH4 = 1.7;  // Tegangan untuk pH 4.0
 const float PH7 = 2.86;  // Tegangan untuk pH 7.0
 const float PH_STEP = (PH4 - PH7) / 3;  // Langkah pH berdasarkan dua titik kalibrasi
 
-// Pin assignments
+// Inisialisasi pin sensor dan relay
 int mq135 = 34;
 #define ONE_WIRE_BUS 18
 #define DHTPIN 27  // DHT22 sensor pin
@@ -39,9 +39,11 @@ int mq135 = 34;
 //DHT
 DHT dht(DHTPIN, DHTTYPE);
 
+//DS18B20
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
+//Flask
 const char* FLASK_URL = "http://192.168.18.172:5000/get_latest_temp_settings";
 const char* FLASK_TIME_URL = "http://192.168.18.172:5000/get_latest_clock_settings";
 const char* FLASK_MOTOR_URL = "http://192.168.18.172:5000/control_device";
@@ -120,6 +122,7 @@ float get_ph() {
     return pH;
 }
 
+// mendapatkan nilai tds
 float get_TDS() {
     int tdsValue = analogRead(TDS_SENSOR_PIN);
     Serial.print("Raw TDS Value: ");
@@ -136,6 +139,7 @@ float get_TDS() {
     return tdsPPM;
 }
 
+//mendapatkan nilai temperature air
 float get_ds18b20_temperature() {
     sensors.requestTemperatures(); // Mengambil suhu dari semua sensor DS18B20
     float temperature_air = sensors.getTempCByIndex(0); // Membaca suhu dari sensor pertama
@@ -187,6 +191,7 @@ bool get_latest_temp_settings(float &min_temp, float &max_temp) {
     }
 }
 
+// Fungsi untuk mendapatkan pengaturan alarm terbaru dari Flask
 bool get_latest_clock_settings(String &alarm_time_1, String &alarm_time_2, String &alarm_time_3) {
     HTTPClient http;
     http.begin(FLASK_TIME_URL);
@@ -216,37 +221,6 @@ bool get_latest_clock_settings(String &alarm_time_1, String &alarm_time_2, Strin
         return false;
     }
 }
-
-bool get_motor_status() {
-    HTTPClient http;
-    String url = String(FLASK_MOTOR_URL) + "?status=ON"; // Tambahkan parameter jika diperlukan
-    http.begin(url);
-    int httpCode = http.GET();
-    
-    if (httpCode == 200) {
-        String payload = http.getString();
-        DynamicJsonDocument doc(1024);
-        DeserializationError error = deserializeJson(doc, payload);
-        if (error) {
-            Serial.print("deserializeJson() failed: ");
-            Serial.println(error.f_str());
-            http.end();
-            return false;
-        }
-
-        bool motor_status = doc["motor_status"];
-        Serial.print("Motor status from Flask: ");
-        Serial.println(motor_status ? "ON" : "OFF");
-        http.end();
-        return true;
-    } else {
-        Serial.print("Failed to retrieve motor status. HTTP Code: ");
-        Serial.println(httpCode);
-        http.end();
-        return false;
-    }
-}
-
 
 // Fungsi untuk mengirim data ke ubidots menggunakan HTTP POST
 void send_data_to_ubidots(float temperature, float humidity, int air_quality, float PH, float TDS, float temperature_water) {
@@ -295,7 +269,7 @@ void setup() {
     digitalWrite(RELAY_AIR,LOW);
     digitalWrite(RELAY_KIPAS, LOW);
     digitalWrite(RELAY_LAMPU, LOW);
-    digitalWrite(RELAY_NUTRISI, LOW); // Set default to HIGH to keep motor off
+    digitalWrite(RELAY_NUTRISI, LOW); 
 
     WiFi.begin(WIFI_SSID, WIFI_PASS);
 
