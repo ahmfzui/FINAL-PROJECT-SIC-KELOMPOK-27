@@ -132,7 +132,7 @@ def detect_maturity_in_video(model, uploaded_file, min_confidence):
     st.write("Video processing completed.")
 
 # Load your trained model
-modelpest = tf.keras.models.load_model('DetectionPestPlant.h5')
+modelpest = tf.keras.models.load_model('DetectionPest.h5')
 
 # Define the classes based on your training
 classes = ["pest detected", "no pest detected"]# Replace with your actual class names
@@ -191,7 +191,7 @@ def main():
         col1, col2, col3 = st.columns([0.2, 0.7, 0.2])
 
         # Muat gambar
-        image = Image.open('Image/title.png')
+        image = Image.open('title.png')
         # Tampilkan gambar
         col2.image(image, use_column_width=True)
         st.markdown("<hr/>", unsafe_allow_html=True)
@@ -210,7 +210,7 @@ def main():
 
         col1, col2, col3 = st.columns([0.2, 0.4, 0.2])
         # Muat gambar
-        image_hidro = Image.open('Image/Hydroponic.jpg')
+        image_hidro = Image.open('Hydroponic.jpg')
         # Tampilkan gambar
         col2.image(image_hidro, use_column_width=True)
 
@@ -293,11 +293,9 @@ def main():
 
         with st.form("Blog_Form"):
 
-            # Menambahkan CSS untuk styling
             st.markdown("""
             <style>
             .stButton { display: flex; justify-content: center; }
-            .custom-title { font-size: 28px; font-weight: bold; } /* Mengubah ukuran font title */
             </style>
             """, unsafe_allow_html=True)
 
@@ -310,38 +308,38 @@ def main():
             blog_data = [
                 {
                     "title": "5 Tips for Caring for Hydroponic Plants",
-                    "img_path": "Image/tips.jpg",
+                    "img_path": "tips.jpg",
                     "description": "A Practical Guide to Maintaining Health and Optimal Growth for Your Hydroponic Plants, including how to manage nutrients, water, light, and system cleanliness.",
                     "link": "https://pustaka.setjen.pertanian.go.id/index-berita/5-tips-merawat-tanaman-hidroponik"
                 },
                 {
                     "title": "Hydroponic Nutrient Requirements",
-                    "img_path": "Image/Nutrisi.jpg",
+                    "img_path": "Nutrisi.jpg",
                     "description": "Discover the Secrets Behind Healthy Hydroponic Plant Growth! This article reviews the essential requirements for hydroponic nutrients.",
                     "link": "https://gokomodo.com/blog/inilah-syarat-nutrisi-hidroponik-dan-jenisnya"
                 },
                 {
                     "title": "7 Common Mistakes Beginners",
-                    "img_path": "Image/blogkesalahan.jpg",
+                    "img_path": "blogkesalahan.jpg",
                     "description": "Discussing Common Mistakes Made by Beginners in Hydroponic Gardening",
                     "link": "https://hidroponikpedia.com/kesalahan-pemula-hidroponik/"
                 },
                 # Postingan tambahan
                 {
                     "title": "4 Hydroponic Technologies in Japan",
-                    "img_path": "Image/jepangHidroponik.jpg",
+                    "img_path": "jepangHidroponik.jpg",
                     "description": "Discover the Latest Innovations in Hydroponics Transforming Farming in Japan! This article explores four advanced technologies being implemented in Japan.",
                     "link": "https://dlh.semarangkota.go.id/4-teknologi-hidroponik-di-jepang/"
                 },
                 {
                     "title": "Maximizing Hydroponic Lighting",
-                    "img_path": "Image/tambahan.jpg",
+                    "img_path": "tambahan.jpg",
                     "description": "Uncover the Secrets Behind Healthy Hydroponic Plant Growth! This article explores the essential requirements for hydroponic nutrition.",
                     "link": "https://www.kompasiana.com/madeyogi1918/60a34c648ede485a65284762/pencahayaan-tanaman-hidroponik-dalam-ruangan-guna-memaksimalkan-produktivitas-tanaman"
                 },
                 {
                     "title": "4 Tips for Maximizing Hydroponics",
-                    "img_path": "Image/4tips.jpg",
+                    "img_path": "4tips.jpg",
                     "description": "Want a More Bountiful Hydroponic Harvest? Discover 4 Practical Tips to Optimize Hydroponic Plant Growth",
                     "link": "https://kebunpintar.id/blog/ketahui-4-tips-dalam-memaksimalkan-bercocok-tanam-metode-hidroponik/"
                 }
@@ -381,71 +379,71 @@ def main():
         
         with st.expander("What does the Monitoring feature do, and how do I use it?"):
             st.write("""
-            The **Monitoring** feature allows you to view real-time sensor data related to your hydroponic system's environment, such as temperature, humidity, air quality, water pH, Total dissolved solids, and Water Temperature. Here's how to use it:
+            The *Monitoring* feature allows you to view real-time sensor data related to your hydroponic system's environment, such as temperature, humidity, air quality, water pH, Total dissolved solids, and Water Temperature. Here's how to use it:
             
-            1. **Navigate to the Monitoring Section:** Select 'Monitoring' from the top navigation bar.
-            2. **Choose a Monitoring Mode:**
-            - **Numerical Sensor Monitoring:** Displays current values of various sensors in a numerical format.
-            - **Graphical Sensor Monitoring:** Displays sensor data in graph form, showing trends over time.
-            3. **Interpret the Data:**
+            1. *Navigate to the Monitoring Section:* Select 'Monitoring' from the top navigation bar.
+            2. *Choose a Monitoring Mode:*
+            - *Numerical Sensor Monitoring:* Displays current values of various sensors in a numerical format.
+            - *Graphical Sensor Monitoring:* Displays sensor data in graph form, showing trends over time.
+            3. *Interpret the Data:*
             - Use the displayed data to assess the current conditions of your hydroponic system.
             - Make adjustments in the 'Controlling' section if needed to optimize conditions.
             """)
         
         with st.expander("How do I use the Temperature Control in the Controlling feature?"):
             st.write("""
-            The **Temperature Control** feature allows you to manage the climate conditions within your hydroponic environment. To use this feature:
-            1. **Navigate to the Controlling Section:** Select 'Controlling' from the top navigation bar.
-            2. **Adjust the Temperature Settings:**
-            - **Set Minimum and Maximum Temperature:**
-                - **Minimum Temperature:** Use the first input field to set the minimum desired temperature.
-                - **Maximum Temperature:** Use the second input field to set the maximum desired temperature.
-            - **Activate Control:** Click the 'Save Temperature Settings' button to send these temperature settings to the system.
-            3. **Automatic Control:**
-            - **Fan Activation:** If the hydroponic system's temperature exceeds the maximum temperature, the fan will automatically turn on.
-            - **Heater Activation:** If the hydroponic system's temperature drops below the minimum temperature, the heater will automatically turn on.
-            4. **Monitor Changes:** Observe the effects in the 'Monitoring' section to ensure the system is maintaining the desired temperature range.
+            The *Temperature Control* feature allows you to manage the climate conditions within your hydroponic environment. To use this feature:
+            1. *Navigate to the Controlling Section:* Select 'Controlling' from the top navigation bar.
+            2. *Adjust the Temperature Settings:*
+            - *Set Minimum and Maximum Temperature:*
+                - *Minimum Temperature:* Use the first input field to set the minimum desired temperature.
+                - *Maximum Temperature:* Use the second input field to set the maximum desired temperature.
+            - *Activate Control:* Click the 'Save Temperature Settings' button to send these temperature settings to the system.
+            3. *Automatic Control:*
+            - *Fan Activation:* If the hydroponic system's temperature exceeds the maximum temperature, the fan will automatically turn on.
+            - *Heater Activation:* If the hydroponic system's temperature drops below the minimum temperature, the heater will automatically turn on.
+            4. *Monitor Changes:* Observe the effects in the 'Monitoring' section to ensure the system is maintaining the desired temperature range.
             """)
 
         with st.expander("How do I control the Nutrition Pump using the Controlling feature?"):
             st.write("""
-            The **Nutrition Pump Control** feature allows you to manage the nutrient supply to your plants. Follow these steps:
+            The *Nutrition Pump Control* feature allows you to manage the nutrient supply to your plants. Follow these steps:
 
-            1. **Navigate to the Nutrition Pump Control Section:** Select 'Nutrition Pump Control' from the top navigation bar.
+            1. *Navigate to the Nutrition Pump Control Section:* Select 'Nutrition Pump Control' from the top navigation bar.
 
-            2. **Set Pump Schedules:**
-            - **Schedule 1:** Enter the time for the first feeding cycle (HH:MM).
-            - **Schedule 2:** Enter the time for the second feeding cycle (HH:MM).
-            - **Schedule 3:** Enter the time for the third feeding cycle (HH:MM).
+            2. *Set Pump Schedules:*
+            - *Schedule 1:* Enter the time for the first feeding cycle (HH:MM).
+            - *Schedule 2:* Enter the time for the second feeding cycle (HH:MM).
+            - *Schedule 3:* Enter the time for the third feeding cycle (HH:MM).
 
-            3. **Save the Schedule:** Click 'Save Pump Schedule' to apply the settings.
+            3. *Save the Schedule:* Click 'Save Pump Schedule' to apply the settings.
 
-            4. **Monitor Pump Status:** Check the latest schedule settings in the 'Monitoring' section to ensure the pump is running according to the set times.
+            4. *Monitor Pump Status:* Check the latest schedule settings in the 'Monitoring' section to ensure the pump is running according to the set times.
             """)
             
         with st.expander("How does the Maturity Detection feature work, and how do I use it?"):
             st.write("""
-            The **Maturity Detection** feature uses computer vision to determine the growth stage of your plants. To use this feature:
+            The *Maturity Detection* feature uses computer vision to determine the growth stage of your plants. To use this feature:
             
-            1. **Navigate to the Maturity Detection Section:** Select 'Maturity Detection' from the top navigation bar.
-            2. **Choose a Detection Method:**
-            - **Upload an Image or Video:**
-                - **Image:** Upload a recent image of your plant.
-                - **Video:** Upload a short video clip of your plants.
+            1. *Navigate to the Maturity Detection Section:* Select 'Maturity Detection' from the top navigation bar.
+            2. *Choose a Detection Method:*
+            - *Upload an Image or Video:*
+                - *Image:* Upload a recent image of your plant.
+                - *Video:* Upload a short video clip of your plants.
                 - The system will analyze the visual data to detect plant maturity levels. Results will be displayed with labels indicating the detected maturity stage.
-            - **Real-Time Detection with ESP32 Cam:**
+            - *Real-Time Detection with ESP32 Cam:*
                 - The ESP32 Cam will continuously monitor and detect objects in real-time.
                 - The system will display real-time maturity status based on the captured images.
-            3. **Interpret Results:** Use the information to decide on actions such as harvesting or continued growth.
+            3. *Interpret Results:* Use the information to decide on actions such as harvesting or continued growth.
             """)
             
         with st.expander("How can I detect pests using the Pest Detection feature?"):
             st.write("""
-            The **Pest Detection** feature allows you to identify pests on your plants using a trained AI model. To use this feature:
+            The *Pest Detection* feature allows you to identify pests on your plants using a trained AI model. To use this feature:
             
-            1. **Navigate to the Pest Detection Section:** Select 'Pest Detection' from the top navigation bar.
-            2. **Upload an Image:** Upload an image of your plant where you suspect pest presence.
-            3. **Run the Detection:**
+            1. *Navigate to the Pest Detection Section:* Select 'Pest Detection' from the top navigation bar.
+            2. *Upload an Image:* Upload an image of your plant where you suspect pest presence.
+            3. *Run the Detection:*
             - The AI model will analyze the image to detect any pests.
             - If pests are detected, the system will provide a warning.
             """)
@@ -463,7 +461,7 @@ def main():
             st.markdown("<p style='text-align: center;'>View real-time sensor data and environmental conditions of your hydroponic system.</p>", unsafe_allow_html=True)
             st.markdown("<hr/>", unsafe_allow_html=True)
 
-            tab1, tab2 = st.tabs(["📊 **Numerical Sensor Monitoring**", "📈 **Graphical Sensor Monitoring**"])
+            tab1, tab2 = st.tabs(["📊 *Numerical Sensor Monitoring", "📈 **Graphical Sensor Monitoring*"])
 
             with tab1:
                 # Create a form for Ubidots widgets
@@ -475,12 +473,12 @@ def main():
                         widget_url1 = "https://stem.ubidots.com/app/dashboards/public/widget/n2DJ6zraCJkvxZYYAQ5egHCTgZLe6E3XBpVtLGnZsoQ"
                         st.components.v1.iframe(widget_url1, width=300, height=300, scrolling=True)
 
-                        st.subheader("🌫️ Humidity")
+                        st.subheader("🌫 Humidity")
                         widget_url2 = "https://stem.ubidots.com/app/dashboards/public/widget/XXSQaCPoG41tQ1W33PDj9xphZOO7DwF6tvflxiKnSkE"
                         st.components.v1.iframe(widget_url2, width=300, height=300, scrolling=True)
 
                     with col2:
-                        st.subheader("🌬️ Air Quality")
+                        st.subheader("🌬 Air Quality")
                         widget_url3 = "https://stem.ubidots.com/app/dashboards/public/widget/r2vxbd2k48WLkhuDvjDSzZSkCzM2tTlyOOIXEjmlv70"
                         st.components.v1.iframe(widget_url3, width=300, height=300, scrolling=True)
 
@@ -550,7 +548,7 @@ def main():
         st.markdown("<hr/>", unsafe_allow_html=True)
 
         # Create tabs for controlling temperature and water motor
-        tab1, tab2 = st.tabs(["🌡 **Temperature Control**", "💦 **Nutrition Motor Control**"])
+        tab1, tab2 = st.tabs(["🌡 *Temperature Control", "💦 **Nutrition Motor Control*"])
 
         # Center buttons
         st.markdown("""
@@ -656,7 +654,7 @@ def main():
 
 
         # Create tabs
-        tab1, tab2, = st.tabs(["📷 **Upload Image and Video**", "📡 **Real-time Object Detection**"])
+        tab1, tab2, = st.tabs(["📷 *Upload Image and Video", "📡 **Real-time Object Detection*"])
 
         with tab1:
             st.write("")
